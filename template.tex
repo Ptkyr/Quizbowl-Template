@@ -1,0 +1,64 @@
+%% A template for writing Quizbowl packets
+%% Author: Eric Wang
+
+\documentclass[10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{fancyhdr} % header
+\usepackage{xparse} % if/else for optional
+\usepackage{titlesec} % section stuff
+\usepackage{enumitem} % enumerate (tossuplist)
+\usepackage{xcolor} % colors
+\usepackage{soul} % better underlining
+\usepackage{times} % tnr masterrace
+
+%%--------------Formatting----------------
+\pagestyle{fancy}
+\lhead{Quizbowl Template}
+\rhead{}
+
+\titleformat{\section}%
+  [hang]% <shape>
+  {\bfseries}% <format>
+  {}% <label>
+  {0pt}% <sep>
+  {}% <before code>
+
+\definecolor{pguidecol}{HTML}{a582ab} % pronunciation guide colour
+\setul{1.2pt}{0.4pt}
+%%----------------------------------------
+
+%%-----------Quizbowl Commands------------
+\newenvironment{tossuplist}
+{\begin{enumerate}[wide=0pt, 
+listparindent=1.25em, 
+parsep=0pt, 
+itemsep=10pt]}
+{\end{enumerate}}
+\newcommand{\answerline}[1]
+{\par \noindent ANSWER: #1}
+\newcommand{\need}[1]{\ul{\textbf{#1}}} % Necessary answer line
+\newcommand{\category}[1]{\par\noindent \textless #1\textgreater}
+\newcommand{\pguide}[1]{\textcolor{pguidecol}{(``\small#1")}} % pronunciation guide
+\newcommand{\quotes}[1]{``#1"}
+\newcommand{\prompt}[1]{\ul{#1}}
+% toss up: optional category, mandatory clue, answer line
+\NewDocumentCommand{\tossup}{omm}
+{\item \vbox{#2 % vbox ensures a tossup will not be split across pages
+\answerline{#3}
+\IfNoValueTF{#1}
+    {}
+    {\category{#1}}%
+}}
+%%----------------------------------------
+
+\begin{document}
+
+\section{TOSSUPS}
+
+\begin{tossuplist}
+
+\tossup{}{}
+
+\end{tossuplist}
+\end{document}
