@@ -2,94 +2,58 @@
 %% https://collegiate.quizbowlpackets.com/2773/
 
 \documentclass[10pt]{article}
-\usepackage[utf8]{inputenc}
-\usepackage[margin=1in]{geometry}
-\usepackage{fancyhdr} % header
-\usepackage{xparse} % if/else for optional
-\usepackage{titlesec} % section stuff
-\usepackage{enumitem} % enumerate (tossuplist)
-\usepackage{xcolor} % colors
-\usepackage{soul} % better underlining
-\usepackage{times} % tnr masterrace
-
-%%--------------Formatting----------------
-\pagestyle{fancy}
-\lhead{Quizbowl Template}
-\rhead{}
-
-\titleformat{\section}%
-  [hang]% <shape>
-  {\bfseries}% <format>
-  {}% <label>
-  {0pt}% <sep>
-  {}% <before code>
-
-\definecolor{pguidecol}{HTML}{a582ab} % pronunciation guide colour
-\setul{1.2pt}{0.4pt}
-%%----------------------------------------
-
-%%-----------Quizbowl Commands------------
-\newenvironment{tossuplist}
-{\begin{enumerate}[wide=0pt, 
-listparindent=1.25em, 
-parsep=0pt, 
-itemsep=10pt]}
-{\end{enumerate}}
-\newcommand{\answerline}[1]
-{\par \noindent ANSWER: #1}
-\newcommand{\need}[1]{\ul{\textbf{#1}}} % Necessary answer line
-\newcommand{\category}[1]{\par\noindent \textless #1\textgreater}
-\newcommand{\pguide}[1]{\textcolor{pguidecol}{(``\small#1")}} % pronunciation guide
-\newcommand{\quotes}[1]{``#1"}
-\newcommand{\prompt}[1]{\ul{#1}}
-% toss up: optional category, mandatory clue, answer line
-\NewDocumentCommand{\tossup}{omm}
-{\item \vbox{#2 % vbox ensures a tossup will not be split across pages
-\answerline{#3}
-\IfNoValueTF{#1}
-    {}
-    {\category{#1}}%
-}}
-%%----------------------------------------
+\usepackage{quizbowl}
 
 \begin{document}
 
 \section{TOSSUPS}
 
-\begin{tossuplist}
-\tossup[Religion]{Inscriptions of this deity’s name on a píthos \pguide{PITH-oss} at Kuntillet Ajrud \pguide{ah-j’ROOD} were cited by Francesca Stavrakopoulou \pguide{STAV-rack-uh-POO-loo} in a book arguing that this deity was deliberately edited out of many
-narratives. In his book on \quotes{folk religion,} William Dever \pguide{DEE-ver} argues for the persistence of this deity’s cult
-based on widespread finds of “pillar-base figurines.” Somewhat confusingly, the name of this deity also denotes a
-type of worship-site which often consisted of a sacred grove or tree, but is usually rendered in English translation
-as this deity’s namesake “pole.” In the Bible, four hundred prophets of this deity and four hundred fifty priests of
-Ba’al \pguide{bah-ahl} are brought into Israel on the orders of Ahab’s wife Jezebel. Hosea \pguide{hoh-ZAY-uh} proclaimed a
-theological “divorce” from this fertility goddess. For 10 points, name this goddess whom some scholars think was
-Jehovah’s wife and is not to be confused with the similarly-named love goddess Astarte.}
-{\need{Asherah} [or \need{Ashirat} or \need{Athirat}; accept \need{Asherah} pole; prompt on \prompt{God's wife} or \prompt{YHWH's wife} or
-\prompt{Jehovah's wife} before “Jehovah's wife”; reject “Ishtar” or “Astarte”]}
+\begin{tossup}
+Inscriptions of this deity’s name on a píthos \pguide{PITH-oss} at Kuntillet Ajrud \pguide{ah-j’ROOD} were cited by Francesca Stavrakopoulou \pguide{STAV-rack-uh-POO-loo} in a book arguing that this deity was deliberately edited out of many narratives. In his book on \quotes{folk religion,} William Dever \pguide{DEE-ver} argues for the persistence of this deity’s cult based on widespread finds of “pillar-base figurines.” Somewhat confusingly, the name of this deity also denotes a type of worship-site which often consisted of a sacred grove or tree, but is usually rendered in English translation as this deity’s namesake “pole.” In the Bible, four hundred prophets of this deity and four hundred fifty priests of Ba’al \pguide{bah-ahl} are brought into Israel on the orders of Ahab’s wife Jezebel. Hosea \pguide{hoh-ZAY-uh} proclaimed a theological “divorce” from this fertility goddess. For 10 points, name this goddess whom some scholars think was Jehovah’s wife and is not to be confused with the similarly-named love goddess Astarte.
+\answer{\need{Asherah}}
+[\also{Ashirat, Athirat}; 
+\accept{\need{Asherah} pole};
+\prompt{God's wife, YHWH's wife, Jehovah's wife} before \quotes{Jehovah's wife};
+\reject{Ishtar, Astarte}]
+\category{Religion}
+\end{tossup}
 
-\tossup[World Literature]{A novel set in this country ends with the protagonist gazing up at the aquamarine, egg-shaped mobile that hangs
+
+\begin{tossup}
+A novel set in this country ends with the protagonist gazing up at the aquamarine, egg-shaped mobile that hangs
 above his baby daughter’s empty bed. In that novel set in this country, a character tearfully runs off after listening
 to a recording of a plane crash and gets gunned down in front of a pool hall. The murder of ex-pilot Ricardo
 Laverde \pguide{lah-VER-day} becomes an obsession of law professor Antonio Yammara in that novel from this country,
 The Sound of Things Falling by Juan Gabriel Vásquez. An author from this country created a man who cannot remain
 a clerk at the River Company of the Caribbean because his letters are too poetic, and who hires Leona Cassiani after
 mistaking her for a prostitute. In that novel from here, a fall from a ladder while trying to recover a parrot kills
-Juvenal Urbino \pguide{oor-BEE-noh}. For 10 points, from what country is the author of Love in the Time of Cholera?}
-{\need{Colombia} [or Republic of \need{Colombia}; or República de \need{Colombia}] (The second author is Gabriel García
-Márquez.)}
+Juvenal Urbino \pguide{oor-BEE-noh}. For 10 points, from what country is the author of Love in the Time of Cholera?
+\answer{\need{Colombia}}
+[or Republic of \need{Colombia}; or República de \need{Colombia}]
+\cluenote{The second author is Gabriel García Márquez.}
+\category{World Literature}
+\end{tossup}
 
-\tossup[American History]{An unpopular governor of this colony was called “Big Belly” by indigenous peoples since he weighed over 400
+
+\begin{tossup}
+An unpopular governor of this colony was called “Big Belly” by indigenous peoples since he weighed over 400
 pounds, and was recalled after he answered twenty-two settlers’ reform petition by having their leader shot. It is
 generally thought that settlers of this colony were the first to build log cabins in the Americas, a practice they
 brought from the region of Savonia. This colony, created on a tract of land from Sankikan Kill to Minquas Kill,
 suffered from the unpopular rule of governor Johan Printz. Printz’s successor, Johan Rising \pguide{REE-sing}
 surrendered to the expedition by Peter Stuyvesant \pguide{STY-vuh-sent} that conquered this colony, including the sites
 of present-day New Castle and Wilmington. For 10 points, what short-lived colony along the southern Delaware
-River named its capital Fort Christina after the queen of its home country?}
-{\need{New Sweden} [or \need{Nya Sverige} \pguide{NEW-uh S’VAR-yeh}; prompt on \prompt{Delaware} or \prompt{Pennsylvania} or \prompt{New Jersey} before “failed”; reject “Sweden” or “Sverige”]}
+River named its capital Fort Christina after the queen of its home country?
+\answer{\need{New Sweden}}
+[or \need{Nya Sverige} \pguide{NEW-uh S’VAR-yeh};
+\prompt{Delaware, Pennsylvania, New Jersey} before \quotes{failed};
+\reject{Sweden, Sverige}
+\category{American History}
+\end{tossup}
 
-\tossup[Other Fine Arts]{This architect placed a black pyramid over the entrance gate to an estate that also features another pyramid
+
+\begin{tossup}
+This architect placed a black pyramid over the entrance gate to an estate that also features another pyramid
 designed by this architect’s assistant. Sibyls protect the entrances of a structure this architect designed for that
 estate’s garden called the Temple of the Four Winds, which was based on Palladio’s Villa Rotonda. In an example
 of his “castle air” style, this architect formed a three-sided rooftop arcade by grouping all the chimneys of Kings
@@ -97,20 +61,49 @@ Weston House at its center. Despite having no training, this Kit-Cat Club member
 Christopher Wren, this man worked with Nicholas Hawksmoor, who designed the Long Library of a building from
 which this architect was banned due to his grandiose plans. That building by this architect honors the Duke of
 Marlborough’s victory in the War of the Spanish Succession. For 10 points, name this English Baroque architect of
-Blenheim Palace.}
-{Sir John \need{Vanbrugh}}
+Blenheim Palace.
+\answer{Sir John \need{Vanbrugh}}
+\category{Other Fine Arts}
+\end{tossup}
 
-\tossup[Chemistry]{An algorithm for this task that relies on both a triangle self-attention module and an invariant point attention
+
+\begin{tossup}
+An algorithm for this task that relies on both a triangle self-attention module and an invariant point attention
 module outputs its result as an LDDT confidence score. Roland Dunbrack’s rotamer library is used to benchmark
 algorithms at this task. Rather than the root-mean-square distance, algorithms for this task are scored in
 competitions like CASP \pguide{casp} with a global distance test on each C-alpha. David Baker’s lab popularized the
 Rosetta force field for this task, and manages a citizen science project for it. This task minimizes a funnel-shaped
 energy function by varying two di-hedral angles per residue. A convolutional neural net that dwarfs other
 algorithms at this task was released by Google’s DeepMind in 2021. For 10 points, name this computational task
-that replaces experiments like crystallography to predict the natural configuration of a string of amino acids.}
-{\textit{de novo} \need{protein structure} prediction [or computationally predicting how \need{protein}s \need{fold} from primary
-sequence; accept any logical equivalents that mention \need{protein}s or poly\need{peptide}s AND secondary, tertiary, or
-quaternary \need{structure} or \need{fold}ing; prompt on answers that only mention \prompt{protein}s or poly\prompt{peptide}s; prompt on
-answers that only mention \prompt{structure} prediction or \prompt{fold}ing prediction by asking “Of what molecules?”]}
-\end{tossuplist}
+that replaces experiments like crystallography to predict the natural configuration of a string of amino acids.
+\answer{\textit{de novo} \need{protein structure} prediction}
+[or computationally predicting how \need{protein}s \need{fold} from primary
+sequence;
+\accept{any logical equivalents that mention \need{protein}s or poly\need{peptide}s AND secondary, tertiary, or quaternary \need{structure} or \need{fold}ing};
+\needmorethan \ul{protein}s or poly\ul{peptide}s;
+\needmorethan \ul{structure} prediction or \ul{fold}ing prediction by asking “Of what molecules?”]
+\category{Chemistry}
+\end{tossup}
+
+
+\newpage
+\section{BONUSES}
+
+
+\begin{bonus}
+\vague As souls reach this structure, each picks a “pattern of life” to be reborn into from those scattered on the ground, with some picking tyrannous lives and others the lives of animals. For 10 points each:
+\bonusclue[h]{Name this structure marked by a rainbow-like column of light, which turns on a goddess’s knees. The stars, the planets, and the sun and moon rotate on this structure’s eight rims, each of which bears a singing woman.}
+\answer{\need{Spindle of Necessity}}
+[\also{Spindle of Ananke;, Distaff of Necessity;, Distaff of Ananke};
+accept, but DO NOT OTHERWISE REVEAL, answers indicating the \quotes{\need{spindle} from the myth of \need{Er}} or \quotes{\need{spindle} from \work{The \need{Republic}} by Plato};
+\prompt{spindle}]
+\bonusclue[m]{This man reaches the Spindle of Necessity after seeing souls enter chasms in the sky and earth. He is stopped from reincarnating and awakes on his funeral pyre 12 days after dying in battle.}
+\answer{myth of \need{Er}}
+\bonusclue[e]{Er’s story ends this work, in which an analogy describes chained prisoners who think the shadows they see on a wall are the whole world.}
+\answer{Plato's \need{Republic}}
+[or Plato's \emph{\need{Politeia}}]
+\category{Philosophy}
+\end{bonus}
+
+
 \end{document}
