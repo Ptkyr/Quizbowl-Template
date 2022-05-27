@@ -1,0 +1,138 @@
+%% A template for writing Quizbowl packets
+%% Author: https://github.com/Ptkyr/
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{quizbowl}
+
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[margin=1in]{geometry}
+\RequirePackage{amsthm}
+\RequirePackage{tikz}
+\RequirePackage{etoolbox} % toggles
+\RequirePackage{fancyhdr} % header
+\RequirePackage{xparse} % if/else for optional
+\RequirePackage{titlesec} % section stuff
+\RequirePackage{enumitem} % enumerate (tossuplist)
+\RequirePackage{xcolor} % colors
+\RequirePackage{contour}
+\RequirePackage[normalem]{ulem} % better underlining, soul breaks?
+\RequirePackage{times} % tnr masterrace
+
+%%--------------Formatting----------------
+\pagestyle{fancy}
+\lhead{Quizbowl Template}
+\rhead{}
+\fancyfoot{}
+
+\titleformat{\section}%
+  [hang]% <shape>
+  {\bfseries}% <format>
+  {}% <label>
+  {0pt}% <sep>
+  {}% <before code>
+
+\renewcommand{\ULdepth}{1.8pt}
+\renewcommand{\ULthickness}{0.1pt}
+\contourlength{0.8pt}
+\newcommand{\ul}[1]{% better underlining
+  \uline{\phantom{#1}}%
+  \llap{\contour{white}{#1}}%
+}
+
+\definecolor{pguidecol}{HTML}{565656} % pronunciation guide colour
+
+\newtheoremstyle{tu}%  % Name
+  {0pt}%               % Space above
+  {0pt}%               % Space below
+  {}%                  % Body font (empty for upright)
+  {}%                  % Indent amount
+  {}%                  % Theorem head font
+  {.}%                 % Post-number delimiter        
+  {0.5em}%             % Space after theorem head
+  {}%                  % Theorem head spec
+ 
+\theoremstyle{tu}
+\newtheorem{tossupi}{}
+\newtheorem{bonusi}{}
+
+\newcommand{\blocktheorem}[1]{%
+  \csletcs{old#1}{#1}% Store \begin
+  \csletcs{endold#1}{end#1}% Store \end
+  \RenewDocumentEnvironment{#1}{o}
+    {\par\addvspace{1.5ex}
+     \noindent\begin{minipage}{\textwidth}
+     \IfNoValueTF{##1}
+       {\csuse{old#1}}
+       {\csuse{old#1}[##1]}}
+    {\csuse{endold#1}
+     \end{minipage}
+     \par\addvspace{1.5ex}}
+}
+\raggedbottom
+
+\blocktheorem{tossupi}
+\blocktheorem{bonusi}
+
+\newenvironment{tossup}
+{\begin{tossupi}}
+{\end{tossupi}
+\bigbreak}
+\newenvironment{bonus}
+{\begin{bonusi}}
+{\end{bonusi}
+\bigbreak}
+%%----------------------------------------
+
+%%-----------Quizbowl Commands------------
+\newcommand{\vague}{\emph{Description acceptable. }}
+\newcommand{\needmorethan}{prompt on answers that only mention\space}
+\newcommand{\need}[1]{\ul{\textbf{#1}}} % Necessary part of answer line
+\newcommand{\pguide}[1]{\textcolor{pguidecol}{(\small``#1")}} % pronunciation guide
+\newcommand{\quotes}[1]{``#1"} % easier quotations
+\newcommand{\work}[1]{\emph{#1}}
+
+\ExplSyntaxOn
+\clist_new:N \l_alt_clist
+\NewDocumentCommand{\alt}{O{\space or \space}m}{
+   \clist_set:Nn \l_alt_clist {#2}
+   \foreach \x [count=\i] in \l_alt_clist 
+    {\need{\x} \int_compare:nNnF {\i} = {\clist_count:N \l_alt_clist} {#1} }
+}
+
+\clist_new:N \l_promptll_clist
+\NewDocumentCommand{\promptll}{O{\space or \space}m}{
+   \clist_set:Nn \l_promptll_clist {#2}
+   \foreach \x [count=\i] in \l_promptll_clist 
+    {\uline{\x}  \int_compare:nNnF {\i} = {\clist_count:N \l_promptll_clist} {#1} }
+}
+
+\clist_new:N \l_rejectll_clist
+\NewDocumentCommand{\rejectll}{O{\space or \space}m}{
+   \clist_set:Nn \l_rejectll_clist {#2}
+   \foreach \x [count=\i] in \l_rejectll_clist 
+    {\quotes{\x}  \int_compare:nNnF {\i} = {\clist_count:N \l_rejectll_clist} {#1} }
+}
+\ExplSyntaxOff
+
+\NewDocumentCommand{\bonusclue}{om}{
+\par \noindent
+\IfNoValueTF{#1}
+    {#2}
+    {[10#1]\space #2}
+}
+\newcommand{\answer}[1]
+{\par \noindent ANSWER: #1}
+\NewDocumentCommand{\also}{m}{%
+or \alt{#1}%
+}
+\newcommand{\accept}[1]{accept\space#1}
+\NewDocumentCommand{\prompt}{m}{%
+prompt on \promptll{#1}%
+}
+\NewDocumentCommand{\reject}{m}{%
+reject \rejectll{#1}%
+}
+\newcommand{\cluenote}[1]{(#1)}
+\newcommand{\category}[1]{\par\noindent \textless #1\textgreater}
+\newcommand{\clueauthor}[1]{\space[#1]}
+%%----------------------------------------
