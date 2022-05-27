@@ -32,10 +32,11 @@
   {0pt}% <sep>
   {}% <before code>
 
+% https://alexwlchan.net/2017/10/latex-underlines/
 \renewcommand{\ULdepth}{1.8pt}
 \renewcommand{\ULthickness}{0.1pt}
 \contourlength{0.8pt}
-\newcommand{\ul}[1]{% better underlining
+\newcommand{\ul}[1]{%
   \uline{\phantom{#1}}%
   \llap{\contour{white}{#1}}%
 }
@@ -56,6 +57,7 @@
 \newtheorem{tossupi}{}
 \newtheorem{bonusi}{}
 
+% https://tex.stackexchange.com/questions/234119/keep-theorem-content-on-the-same-page
 \newcommand{\blocktheorem}[1]{%
   \csletcs{old#1}{#1}% Store \begin
   \csletcs{endold#1}{end#1}% Store \end
@@ -92,6 +94,7 @@
 \newcommand{\quotes}[1]{``#1"} % easier quotations
 \newcommand{\work}[1]{\emph{#1}}
 
+% Literally all Yusuf, shoutouts to Yusuf
 \ExplSyntaxOn
 \clist_new:N \l_alt_clist
 \NewDocumentCommand{\alt}{O{\space or \space}m}{
