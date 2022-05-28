@@ -76,24 +76,6 @@
 \blocktheorem{tossupi}
 \blocktheorem{bonusi}
 
-\newenvironment{tossup}
-{\begin{tossupi}}
-{\end{tossupi}
-\bigbreak}
-\newenvironment{bonus}
-{\begin{bonusi}}
-{\end{bonusi}
-\bigbreak}
-%%----------------------------------------
-
-%%-----------Quizbowl Commands------------
-\newcommand{\vague}{\emph{Description acceptable.\space}}
-\newcommand{\needmorethan}{prompt on answers that only mention\space}
-\newcommand{\need}[1]{\ul{\textbf{#1}}} % Necessary part of answer line
-\newcommand{\pguide}[1]{\textcolor{pguidecol}{(\small``#1")}} % pronunciation guide
-\newcommand{\quotes}[1]{``#1"} % easier quotations
-\newcommand{\work}[1]{\emph{#1}}
-
 % Literally all Yusuf, shoutouts to Yusuf
 \ExplSyntaxOn
 \clist_new:N \l_alt_clist
@@ -117,7 +99,24 @@
     {\quotes{\x}  \int_compare:nNnF {\i} = {\clist_count:N \l_rejectll_clist} {#1} }
 }
 \ExplSyntaxOff
+%%----------------------------------------
 
+%%-----------Quizbowl Commands------------
+\newenvironment{tossup}
+{\begin{tossupi}}
+{\end{tossupi}
+\bigbreak}
+\newenvironment{bonus}
+{\begin{bonusi}}
+{\end{bonusi}
+\bigbreak}
+
+\newcommand{\vague}{\emph{Description acceptable.\space}}
+\newcommand{\needmorethan}{prompt on answers that only mention\space}
+\newcommand{\need}[1]{\ul{\textbf{#1}}} % Necessary part of answer line
+\newcommand{\pguide}[1]{\textcolor{pguidecol}{(\small``#1")}} % pronunciation guide
+\newcommand{\quotes}[1]{``#1"} % easier quotations
+\newcommand{\work}[1]{\emph{#1}}
 \NewDocumentCommand{\bonusclue}{om}{
 \par \noindent
 \IfNoValueTF{#1}
