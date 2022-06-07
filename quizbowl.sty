@@ -1,12 +1,16 @@
 %% A template for writing Quizbowl packets
 %% Author: https://github.com/Ptkyr/
-%% To use, place quizbowl.sty in the same folder and \usepackage{quizbowl}
+%% To use, place quizbowl.sty in the same folder and either: 
+%%  * \usepackage{quizbowl} if you have no powers
+%%  * \usepackage[powers = true]{quizbowl} if you have powers
+%%    and denote powers with \powmark
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{quizbowl}
 
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[margin=1in]{geometry}
+\RequirePackage{kvoptions} % toggle globals
 \RequirePackage{amsthm} % numbering
 \RequirePackage{tikz} % i need \foreach, okay?
 \RequirePackage{etoolbox} % toggles
@@ -20,8 +24,18 @@
 \RequirePackage{times} % tnr masterrace
 
 %%--------------Formatting----------------
+\SetupKeyvalOptions{
+ family=ptkyr,
+ prefix=ptkyr@
+}
+
+\DeclareBoolOption{powers} % defaults to false
+
+\ProcessKeyvalOptions*
+
 \pagestyle{fancy}
-\lhead{Quizbowl Template}
+\fancyhead[C]{Quizbowl Template}
+\lhead{}
 \rhead{}
 \fancyfoot{}
 
@@ -46,13 +60,12 @@
 \newtheoremstyle{tu}%  % Name
   {0pt}%               % Space above
   {0pt}%               % Space below
-  {}%                  % Body font (empty for upright)
+  {\ifptkyr@powers\bfseries\fi}%                  % Body font (empty for upright)
   {}%                  % Indent amount
   {}%                  % Theorem head font
   {.}%                 % Post-number delimiter        
   {0.5em}%             % Space after theorem head
   {}%                  % Theorem head spec
- 
 \theoremstyle{tu}
 \newtheorem{tossupi}{}
 \newtheorem{bonusi}{}
@@ -107,35 +120,32 @@
 {\end{tossupi}
 \bigbreak}
 \newenvironment{bonus}
-{\begin{bonusi}}
+{\begin{bonusi}\normalfont}
 {\end{bonusi}
 \bigbreak}
 
+\newcommand{\powmark}{(*)\space\normalfont}
+\newcommand{\ftp}{For 10 points,\space}
+\newcommand{\ftpe}{For 10 points each:}
 \newcommand{\vague}{\emph{Description acceptable.\space}}
 \newcommand{\needmorethan}{prompt on answers that only mention\space}
 \newcommand{\need}[1]{\ul{\textbf{#1}}} % Necessary part of answer line
 \newcommand{\pguide}[1]{\textcolor{pguidecol}{(\small``#1")}} % pronunciation guide
 \newcommand{\quotes}[1]{``#1"} % easier quotations
 \newcommand{\work}[1]{\emph{#1}}
-\NewDocumentCommand{\bonusclue}{om}{
-\par \noindent
+\NewDocumentCommand{\ansf}{m}{\par \noindent ANSWER: #1}
+\NewDocumentCommand{\ans}{m}{\par \noindent ANSWER: \need{#1}}
+\NewDocumentCommand{\also}{m}{or \alt{#1}}
+\newcommand{\accept}[1]{accept\space#1}
+\NewDocumentCommand{\prompt}{m}{prompt on \promptll{#1}}
+\NewDocumentCommand{\reject}{m}{reject \rejectll{#1}}
+\newcommand{\cluenote}[1]{(#1)}
+\newcommand{\category}[1]{\par\noindent \textless #1\textgreater}
+\newcommand{\clueauthor}[1]{\space[#1]}
+\NewDocumentCommand{\bonusclue}{om}{% options are [e|m|h]
+\par \noindent%
 \IfNoValueTF{#1}
     {#2}
     {[10#1]\space #2}
 }
-\newcommand{\answer}[1]
-{\par \noindent ANSWER: #1}
-\NewDocumentCommand{\also}{m}{%
-or \alt{#1}%
-}
-\newcommand{\accept}[1]{accept\space#1}
-\NewDocumentCommand{\prompt}{m}{%
-prompt on \promptll{#1}%
-}
-\NewDocumentCommand{\reject}{m}{%
-reject \rejectll{#1}%
-}
-\newcommand{\cluenote}[1]{(#1)}
-\newcommand{\category}[1]{\par\noindent \textless #1\textgreater}
-\newcommand{\clueauthor}[1]{\space[#1]}
 %%----------------------------------------
