@@ -7,18 +7,18 @@
 
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[margin=1in]{geometry}
-\RequirePackage{kvoptions} % toggle globals
-\RequirePackage{amsthm} % numbering
-\RequirePackage{tikz} % i need \foreach, okay?
-\RequirePackage{etoolbox} % toggles
-\RequirePackage{fancyhdr} % header
-\RequirePackage{xparse} % if/else for optional
-\RequirePackage{titlesec} % section stuff
-\RequirePackage{enumitem} % enumerate (tossuplist)
-\RequirePackage{xcolor} % colors
-\RequirePackage{contour} % setup for underlining
+\RequirePackage{kvoptions}      % toggle globals
+\RequirePackage{amsthm}         % numbering
+\RequirePackage{tikz}           % i need \foreach, okay?
+\RequirePackage{etoolbox}       % toggles
+\RequirePackage{fancyhdr}       % header
+\RequirePackage{xparse}         % if/else for optional
+\RequirePackage{titlesec}       % section stuff
+\RequirePackage{enumitem}       % enumerate (tossuplist)
+\RequirePackage{xcolor}         % colors
+\RequirePackage{contour}        % setup for underlining
 \RequirePackage[normalem]{ulem} % better underlining, soul breaks?
-\RequirePackage{times} % tnr masterrace
+\RequirePackage{times}          % tnr masterrace
 
 %%--------------Formatting----------------
 \SetupKeyvalOptions{
@@ -37,11 +37,11 @@
 \fancyfoot{}
 
 \titleformat{\section}%
-  [hang]% <shape>
-  {\bfseries}% <format>
-  {}% <label>
-  {0pt}% <sep>
-  {}% <before code>
+  [hang]%       <shape>
+  {\bfseries}%  <format>
+  {}%           <label>
+  {0pt}%        <sep>
+  {}%           <before code>
 
 % https://alexwlchan.net/2017/10/latex-underlines/
 \renewcommand{\ULdepth}{1.8pt}
@@ -54,15 +54,15 @@
 
 \definecolor{pguidecol}{HTML}{565656} % pronunciation guide colour
 
-\newtheoremstyle{tu}%  % Name
-  {0pt}%               % Space above
-  {0pt}%               % Space below
-  {\ifptkyr@powers\bfseries\fi}%                  % Body font (empty for upright)
-  {}%                  % Indent amount
-  {}%                  % Theorem head font
-  {.}%                 % Post-number delimiter        
-  {0.5em}%             % Space after theorem head
-  {}%                  % Theorem head spec
+\newtheoremstyle{tu}%            % Name
+  {0pt}%                         % Space above
+  {0pt}%                         % Space below
+  {\ifptkyr@powers\bfseries\fi}% % Body font (empty for upright)
+  {}%                            % Indent amount
+  {}%                            % Theorem head font
+  {.}%                           % Post-number delimiter        
+  {0.5em}%                       % Space after theorem head
+  {}%                            % Theorem head spec
 \theoremstyle{tu}
 \newtheorem{tossupi}{}
 \newtheorem{bonusi}{}
@@ -112,6 +112,8 @@
 %%----------------------------------------
 
 %%-----------Quizbowl Commands------------
+\newcommand{\tossups}{\newpage\section{TOSSUPS}}
+\newcommand{\bonuses}{\newpage\section{BONUSES}}
 \newenvironment{tossup}
 {\begin{tossupi}}
 {\end{tossupi}
@@ -124,7 +126,7 @@
 \newcommand{\powmark}{(*)\space\normalfont}
 \newcommand{\ftp}{For 10 points,\space}
 \newcommand{\ftpe}{For 10 points each:}
-\newcommand{\vague}{\textnormal{\emph{ Description acceptable.\space}}}
+\newcommand{\vague}{\textnormal{\emph{Description acceptable.\space}}}
 \newcommand{\needmorethan}{prompt on answers that only mention\space}
 \newcommand{\need}[1]{\ul{\textbf{#1}}} % Necessary part of answer line
 \newcommand{\pguide}[1]{\textcolor{pguidecol}{(\small``#1")}} % pronunciation guide
