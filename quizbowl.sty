@@ -99,7 +99,7 @@
 \NewDocumentCommand{\promptll}{O{\space or \space}m}{
    \clist_set:Nn \l_promptll_clist {#2}
    \foreach \x [count=\i] in \l_promptll_clist 
-    {\uline{\x}  \int_compare:nNnF {\i} = {\clist_count:N \l_promptll_clist} {#1} }
+    {\ul{\x}  \int_compare:nNnF {\i} = {\clist_count:N \l_promptll_clist} {#1} }
 }
 
 \clist_new:N \l_rejectll_clist
