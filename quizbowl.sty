@@ -1,6 +1,6 @@
 %% A template for writing Quizbowl packets
 %% Author: https://github.com/Ptkyr/
-%% To use, place quizbowl.sty in the same folder and \usepackage{quizbowl}
+%% Place quizbowl.sty in same folder and \usepackage{quizbowl}
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{quizbowl}
@@ -19,15 +19,14 @@
 \RequirePackage{contour}        % setup for underlining
 \RequirePackage[normalem]{ulem} % better underlining, soul breaks?
 \RequirePackage{times}          % tnr masterrace
+\RequirePackage{microtype}      % spacing, kerning, etc
 
 %%--------------Formatting----------------
 \SetupKeyvalOptions{
  family=ptkyr,
  prefix=ptkyr@
 }
-
 \DeclareBoolOption{powers} % defaults to false
-
 \ProcessKeyvalOptions*
 
 \pagestyle{fancy}
@@ -126,27 +125,29 @@
 \newcommand{\powmark}{(*)\space\normalfont}
 \newcommand{\ftp}{For 10 points,\space}
 \newcommand{\ftpe}{For 10 points each:}
+\newcommand{\aoe}{any obvious equivalents}
 \newcommand{\vague}{\textnormal{\emph{Description acceptable.\space}}}
 \newcommand{\needmorethan}{prompt on answers that only mention\space}
 \newcommand{\need}[1]{\ul{\textbf{#1}}} % Necessary part of answer line
 \newcommand{\pguide}[1]{\textcolor{pguidecol}{(\small``#1")}} % pronunciation guide
 \newcommand{\quotes}[1]{``#1"} % easier quotations
 \newcommand{\work}[1]{\emph{#1}}
-\NewDocumentCommand{\ansf}{m}{\par \noindent ANSWER: #1}
-\NewDocumentCommand{\ans}{m}{\par \noindent ANSWER: \need{#1}}
-\NewDocumentCommand{\also}{m}{or \alt{#1}}
+\newcommand{\ntm}[1]{\emph{(Note to moderator: #1)}}
+\newcommand{\ansf}[1]{\smallbreak\noindent ANSWER: #1}
+\newcommand{\ans}[1]{\smallbreak\noindent ANSWER: \need{#1}}
+\newcommand{\also}[1]{or \alt{#1}}
 \newcommand{\accept}[1]{accept\space#1}
-\NewDocumentCommand{\prompt}{m}{prompt on \promptll{#1}}
-\NewDocumentCommand{\promptf}{m}{prompt on #1}
-\NewDocumentCommand{\reject}{m}{reject \rejectll{#1}}
-\NewDocumentCommand{\rejectf}{m}{reject #1}
+\newcommand{\prompt}[1]{prompt on \promptll{#1}}
+\newcommand{\promptf}[1]{prompt on #1}
+\newcommand{\reject}[1]{reject \rejectll{#1}}
+\newcommand{\rejectf}[1]{reject #1}
 \newcommand{\cluenote}[1]{(#1)}
 \newcommand{\category}[1]{\par\noindent \textless #1\textgreater}
 \newcommand{\clueauthor}[1]{\space[#1]}
 \NewDocumentCommand{\bonusclue}{om}{% options are [e|m|h]
-\par \noindent%
+\smallbreak \noindent%
 \IfNoValueTF{#1}
     {#2}
-    {[10#1]\space #2}
+    {[10#1]\space\space #2}
 }
 %%----------------------------------------
